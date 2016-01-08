@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>初学python（六）List常用操作 | InnerAc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="python的list的用法其实有很多，这里就练习几个常用的吧。这里是S的几个函数
+  Operation Result Notes s[i] = x item i of s is replaced by x   s[i:j] = t  slice of s from i to j is replaced by the contents of the iterable t   del s[i:j]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初学python（六）List常用操作">
+<meta property="og:url" content="http://innerac.github.io/2015/08/25/18/index.html">
+<meta property="og:site_name" content="InnerAc">
+<meta property="og:description" content="python的list的用法其实有很多，这里就练习几个常用的吧。这里是S的几个函数
+  Operation Result Notes s[i] = x item i of s is replaced by x   s[i:j] = t  slice of s from i to j is replaced by the contents of the iterable t   del s[i:j]">
+<meta property="og:updated_time" content="2016-01-08T08:09:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初学python（六）List常用操作">
+<meta name="twitter:description" content="python的list的用法其实有很多，这里就练习几个常用的吧。这里是S的几个函数
+  Operation Result Notes s[i] = x item i of s is replaced by x   s[i:j] = t  slice of s from i to j is replaced by the contents of the iterable t   del s[i:j]">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/ava.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">InnerAc</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Don&#39;t fire the unknow</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/编程与算法">编程与算法</a></li>
+				        
+							<li><a href="/categories/日常维护">日常维护</a></li>
+				        
+							<li><a href="/categories/点点滴滴">点点滴滴</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/InnerAc" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/64位/" style="font-size: 10px;">64位</a> <a href="/tags/ACM/" style="font-size: 16.67px;">ACM</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/QT/" style="font-size: 10px;">QT</a> <a href="/tags/VS/" style="font-size: 10px;">VS</a> <a href="/tags/aboutme/" style="font-size: 10px;">aboutme</a> <a href="/tags/acm/" style="font-size: 11.67px;">acm</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a> <a href="/tags/bellman-ford/" style="font-size: 10px;">bellman-ford</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cf/" style="font-size: 10px;">cf</a> <a href="/tags/codeforces/" style="font-size: 10px;">codeforces</a> <a href="/tags/dijkstra/" style="font-size: 10px;">dijkstra</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/dr-com/" style="font-size: 10px;">dr.com</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/floyd/" style="font-size: 10px;">floyd</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hadoop/" style="font-size: 11.67px;">hadoop</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/hihocoder/" style="font-size: 10px;">hihocoder</a> <a href="/tags/innerac/" style="font-size: 10px;">innerac</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/osgi/" style="font-size: 10px;">osgi</a> <a href="/tags/poj/" style="font-size: 11.67px;">poj</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/spark/" style="font-size: 13.33px;">spark</a> <a href="/tags/spfa/" style="font-size: 10px;">spfa</a> <a href="/tags/ss/" style="font-size: 13.33px;">ss</a> <a href="/tags/tachyon/" style="font-size: 13.33px;">tachyon</a> <a href="/tags/trie/" style="font-size: 11.67px;">trie</a> <a href="/tags/ubuntu/" style="font-size: 18.33px;">ubuntu</a> <a href="/tags/uniun/" style="font-size: 10px;">uniun</a> <a href="/tags/uwsgi/" style="font-size: 10px;">uwsgi</a> <a href="/tags/virtualbox/" style="font-size: 10px;">virtualbox</a> <a href="/tags/vpn/" style="font-size: 10px;">vpn</a> <a href="/tags/区域赛/" style="font-size: 10px;">区域赛</a> <a href="/tags/图论/" style="font-size: 15px;">图论</a> <a href="/tags/大数据/" style="font-size: 15px;">大数据</a> <a href="/tags/最短路/" style="font-size: 15px;">最短路</a> <a href="/tags/经纬度/" style="font-size: 10px;">经纬度</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/课后练习/" style="font-size: 10px;">课后练习</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://jetmuffin.github.io">JetMuffin的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sunzequn.com/">Sloriac的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.qilinlirui.com/">祁林的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mapengju.com">马鹏举的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zcatao.github.io">杨松涛的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blkstone.github.io/">达哥的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://legend4917.github.io">雪林哥的博客</a>
+			          
+			          
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">本人男，目前学生党。常年ACM打铁铸铜，正在成长中。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">InnerAc</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/ava.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">InnerAc</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Don&#39;t fire the unknow</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/编程与算法">编程与算法</a></li>
+		        
+					<li><a href="/categories/日常维护">日常维护</a></li>
+		        
+					<li><a href="/categories/点点滴滴">点点滴滴</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/InnerAc" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-18" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/25/18/" class="article-date">
+  	<time datetime="2015-08-25T00:40:35.000Z" itemprop="datePublished">2015-08-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初学python（六）List常用操作
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/编程与算法/">编程与算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>python的list的用法其实有很多，这里就练习几个常用的吧。<br>这里是S的几个函数</p>
+<table> <tr> <td>Operation</td> <td>Result</td> <td>Notes</td></tr><tr> <td>s[i] = x</td> <td>item i of s is replaced by x</td> <td> </td></tr><tr> <td>s[i:j] = t</td>  <td>slice of s from i to j is replaced by the contents of the iterable t</td> <td> </td></tr><tr> <td>del s[i:j]</td> <td>same as s[i:j] = []</td> <td> </td></tr><tr> <td>s[i:j:k] = t</td> <td>the elements of s[i:j:k] are replaced by those of t</td>  <td>-1</td></tr><tr> <td>del s[i:j:k]</td> <td>removes the elements of s[i:j:k] from the list</td> <td> </td></tr><tr> <td>s.append(x)</td>  <td>appends x to the end of the sequence (same as s[len(s):len(s)] = [x])</td> <td> </td></tr><tr> <td>s.clear()</td> <td>removes all items from s (same as del s[:])</td> <td>-5</td></tr><tr> <td>s.copy()</td> <td>creates a shallow copy of s (same as s[:])</td> <td>-5</td></tr><tr> <td>s.extend(t)</td> <td>extends s with the contents of t (same as s[len(s):len(s)] = t)</td> <td> </td></tr><tr> <td>s.insert(i, x)</td> <td>inserts x into s at the index given by i (same as s[i:i] = [x])</td> <td> </td></tr><tr>  <td>s.pop([i])</td> <td>retrieves the item at i and also removes it from s</td> <td>-2</td></tr><tr>  <td>s.remove(x)</td> <td>remove the first item from s where s[i] == x</td>  <td>-3</td></tr><tr> <td>s.reverse()</td> <td>reverses the items of s in place</td>  <td>-4</td></tr></table>
+
+
+<a id="more"></a>
+<p>好像找到中文版了，补充一下哈：</p>
+<table class="table-bordered table-striped table-condensed"> <tr> <th>方法</th> <th>描述</th> </tr> <tr> <td>list.append(x) </td> <td>把一个元素添加到列表的结尾，相当于 a[len(a):] = [x]。 </td> </tr> <tr> <td>list.extend(L) </td> <td>通过添加指定列表的所有元素来扩充列表，相当于 a[len(a):] = L。 </td> </tr> <tr> <td>list.insert(i, x) </td> <td>在指定位置插入一个元素。第一个参数是准备插入到其前面的那个元素的索引，例如 a.insert(0, x) 会插入到整个列表之前，而 a.insert(len(a), x) 相当于 a.append(x) 。 </td> </tr> <tr> <td>list.remove(x) </td> <td>删除列表中值为 x 的第一个元素。如果没有这样的元素，就会返回一个错误。 </td> </tr> <tr> <td>list.pop([i]) </td> <td>从列表的指定位置删除元素，并将其返回。如果没有指定索引，a.pop()返回最后一个元素。元素随即从列表中被删除。（方法中 i 两边的方括号表示这个参数是可选的，而不是要求你输入一对方括号，你会经常在 Python 库参考手册中遇到这样的标记。） </td> </tr> <tr> <td>list.clear() </td> <td>移除列表中的所有项，等于del a[:]。 </td> </tr> <tr> <td>list.index(x) </td> <td>返回列表中第一个值为 x 的元素的索引。如果没有匹配的元素就会返回一个错误。 </td> </tr> <tr> <td>list.count(x) </td> <td>返回 x 在列表中出现的次数。 </td> </tr> <tr> <td>list.sort() </td> <td>对列表中的元素进行排序。 </td> </tr> <tr> <td>list.reverse() </td> <td>倒排列表中的元素。 </td> </tr> <tr> <td>list.copy() </td> <td>返回列表的浅复制，等于a[:]。 </td> </tr> </table>
+
+<p>接下来是我的测试：</p>
+<h2 id="定义">定义</h2><pre><code><span class="prompt">&gt;&gt;</span>&gt; list = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; list
+[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]
+</code></pre><h2 id="索引">索引</h2><pre><code>&gt;&gt;&gt; <span class="built_in">list</span>[<span class="number">0</span>]
+<span class="string">'a'</span>
+&gt;&gt;&gt; <span class="built_in">list</span>[-<span class="number">1</span>]
+<span class="string">'d'</span>
+&gt;&gt;&gt; <span class="built_in">list</span>[<span class="number">1</span>:<span class="number">3</span>]    <span class="preprocessor">#获取[<span class="number">1</span>,<span class="number">3</span>)区间的元素</span>
+[<span class="string">'b'</span>, <span class="string">'c'</span>]
+</code></pre><h2 id="追加和插入">追加和插入</h2><pre><code><span class="prompt">&gt;&gt;</span>&gt; list.append(<span class="string">'e'</span>)    <span class="comment">#尾部追加</span>
+<span class="prompt">&gt;&gt;</span>&gt; list
+[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; list.insert(<span class="number">1</span>,<span class="string">'a2'</span>)    <span class="comment">#下标插入</span>
+<span class="prompt">&gt;&gt;</span>&gt; list
+[<span class="string">'a'</span>, <span class="string">'a2'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; list.extend([<span class="string">'f'</span>,<span class="string">'g'</span>,<span class="string">'h'</span>])    <span class="comment">#尾部追加list</span>
+<span class="prompt">&gt;&gt;</span>&gt; list
+[<span class="string">'a'</span>, <span class="string">'a2'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>]
+</code></pre><h2 id="检索">检索</h2><pre><code><span class="prompt">&gt;&gt;</span>&gt; list.index(<span class="string">'a2'</span>)
+<span class="number">1</span>
+<span class="prompt">&gt;&gt;</span>&gt; <span class="string">'b2'</span> in list
+<span class="constant">False</span>
+</code></pre><h2 id="运算符">运算符</h2><pre><code><span class="prompt">&gt;&gt;</span>&gt; list += [<span class="string">'i'</span>,<span class="string">'j'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; list
+[<span class="string">'a'</span>, <span class="string">'a2'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; list = [<span class="string">'a'</span>,<span class="string">'b'</span>]*<span class="number">3</span>
+<span class="prompt">&gt;&gt;</span>&gt; list
+[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>]
+</code></pre><h2 id="join用法">join用法</h2><pre><code>&gt;&gt;&gt; <span class="keyword">params</span> ={<span class="string">'one'</span>:<span class="string">'first'</span>,<span class="string">'two'</span>:<span class="string">'twice'</span>,<span class="string">'three'</span>:<span class="string">'third'</span>}
+&gt;&gt;&gt; [<span class="string">'%s=%s'</span> % (k,v) <span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="keyword">params</span>.items()]
+[<span class="string">'three=third'</span>, <span class="string">'one=first'</span>, <span class="string">'two=twice'</span>]
+&gt;&gt;&gt; list = <span class="string">'&amp;&amp;'</span>.<span class="keyword">join</span>([<span class="string">'%s=%s'</span> % (k,v) <span class="keyword">for</span> k,v <span class="keyword">in</span> <span class="keyword">params</span>.items()])
+&gt;&gt;&gt; list
+<span class="string">'three=third&amp;&amp;one=first&amp;&amp;two=twice'</span>
+</code></pre><h2 id="分割">分割</h2><pre><code>&gt;&gt;&gt; list.<span class="function"><span class="title">split</span><span class="params">(<span class="string">'&amp;&amp;'</span>)</span></span>
+[<span class="string">'three=third'</span>, <span class="string">'one=first'</span>, <span class="string">'two=twice'</span>]
+&gt;&gt;&gt; list.<span class="function"><span class="title">split</span><span class="params">(<span class="string">'&amp;&amp;'</span>,<span class="number">1</span>)</span></span>    #第二个参数为分割次数
+[<span class="string">'three=third'</span>, <span class="string">'one=first&amp;&amp;two=twice'</span>]
+</code></pre><h2 id="映射和过滤">映射和过滤</h2><pre><code>&gt;&gt;&gt; <span class="built_in">list</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]
+&gt;&gt;&gt; <span class="built_in">list</span> = [elem*<span class="number">2</span> <span class="keyword">for</span> elem in <span class="built_in">list</span>]
+&gt;&gt;&gt; <span class="built_in">list</span>
+[<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]
+&gt;&gt;&gt; <span class="built_in">list</span> = [elem <span class="keyword">for</span> elem in <span class="built_in">list</span> <span class="keyword">if</span> elem &gt;<span class="number">2</span>]
+&gt;&gt;&gt; <span class="built_in">list</span>
+[<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]
+&gt;&gt;&gt; <span class="built_in">list</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]
+&gt;&gt;&gt; <span class="built_in">list</span>
+[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]
+&gt;&gt;&gt; <span class="built_in">list</span> = [elem <span class="keyword">for</span> elem in <span class="built_in">list</span> <span class="keyword">if</span> <span class="built_in">list</span>.count(elem) &gt; <span class="number">1</span>]
+&gt;&gt;&gt; <span class="built_in">list</span>
+[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]
+</code></pre><h2 id="删除操作">删除操作</h2><pre><code>&gt;&gt;&gt; <span class="built_in">list</span>.remove(<span class="number">1</span>)    <span class="preprocessor">#删除首次出现的值</span>
+&gt;&gt;&gt; <span class="built_in">list</span>
+[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]
+&gt;&gt;&gt; <span class="built_in">list</span>.pop()    <span class="preprocessor">#删除尾部元素，并且返回</span>
+<span class="number">4</span>
+&gt;&gt;&gt; <span class="built_in">list</span>
+[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/25/19/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          初学python（七）循环与条件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/25/17/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初学python（五）字符串操作</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="18" data-title="初学python（六）List常用操作" data-url="http://innerac.github.io/2015/08/25/18/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"innerac"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 InnerAc
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  blog by <a href="https://github.com/innerac" target="_blank">InnerAc</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

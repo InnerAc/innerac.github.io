@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>初学python（二）数据类型 | InnerAc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="据说python里有6个标准的数据类型：
+
+Numbers（数字）
+String（字符串）
+List（列表） 
+Tuple（元组） 
+Sets（集合）
+Dictionaries（字典）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初学python（二）数据类型">
+<meta property="og:url" content="http://innerac.github.io/2015/08/25/14/index.html">
+<meta property="og:site_name" content="InnerAc">
+<meta property="og:description" content="据说python里有6个标准的数据类型：
+
+Numbers（数字）
+String（字符串）
+List（列表） 
+Tuple（元组） 
+Sets（集合）
+Dictionaries（字典）">
+<meta property="og:updated_time" content="2016-01-08T08:09:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初学python（二）数据类型">
+<meta name="twitter:description" content="据说python里有6个标准的数据类型：
+
+Numbers（数字）
+String（字符串）
+List（列表） 
+Tuple（元组） 
+Sets（集合）
+Dictionaries（字典）">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/ava.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">InnerAc</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Don&#39;t fire the unknow</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/编程与算法">编程与算法</a></li>
+				        
+							<li><a href="/categories/日常维护">日常维护</a></li>
+				        
+							<li><a href="/categories/点点滴滴">点点滴滴</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/InnerAc" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/64位/" style="font-size: 10px;">64位</a> <a href="/tags/ACM/" style="font-size: 16.67px;">ACM</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/QT/" style="font-size: 10px;">QT</a> <a href="/tags/VS/" style="font-size: 10px;">VS</a> <a href="/tags/aboutme/" style="font-size: 10px;">aboutme</a> <a href="/tags/acm/" style="font-size: 11.67px;">acm</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a> <a href="/tags/bellman-ford/" style="font-size: 10px;">bellman-ford</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cf/" style="font-size: 10px;">cf</a> <a href="/tags/codeforces/" style="font-size: 10px;">codeforces</a> <a href="/tags/dijkstra/" style="font-size: 10px;">dijkstra</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/dr-com/" style="font-size: 10px;">dr.com</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/floyd/" style="font-size: 10px;">floyd</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hadoop/" style="font-size: 11.67px;">hadoop</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/hihocoder/" style="font-size: 10px;">hihocoder</a> <a href="/tags/innerac/" style="font-size: 10px;">innerac</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/osgi/" style="font-size: 10px;">osgi</a> <a href="/tags/poj/" style="font-size: 11.67px;">poj</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/spark/" style="font-size: 13.33px;">spark</a> <a href="/tags/spfa/" style="font-size: 10px;">spfa</a> <a href="/tags/ss/" style="font-size: 13.33px;">ss</a> <a href="/tags/tachyon/" style="font-size: 13.33px;">tachyon</a> <a href="/tags/trie/" style="font-size: 11.67px;">trie</a> <a href="/tags/ubuntu/" style="font-size: 18.33px;">ubuntu</a> <a href="/tags/uniun/" style="font-size: 10px;">uniun</a> <a href="/tags/uwsgi/" style="font-size: 10px;">uwsgi</a> <a href="/tags/virtualbox/" style="font-size: 10px;">virtualbox</a> <a href="/tags/vpn/" style="font-size: 10px;">vpn</a> <a href="/tags/区域赛/" style="font-size: 10px;">区域赛</a> <a href="/tags/图论/" style="font-size: 15px;">图论</a> <a href="/tags/大数据/" style="font-size: 15px;">大数据</a> <a href="/tags/最短路/" style="font-size: 15px;">最短路</a> <a href="/tags/经纬度/" style="font-size: 10px;">经纬度</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/课后练习/" style="font-size: 10px;">课后练习</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://jetmuffin.github.io">JetMuffin的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sunzequn.com/">Sloriac的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.qilinlirui.com/">祁林的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mapengju.com">马鹏举的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zcatao.github.io">杨松涛的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blkstone.github.io/">达哥的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://legend4917.github.io">雪林哥的博客</a>
+			          
+			          
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">本人男，目前学生党。常年ACM打铁铸铜，正在成长中。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">InnerAc</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/ava.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">InnerAc</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Don&#39;t fire the unknow</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/编程与算法">编程与算法</a></li>
+		        
+					<li><a href="/categories/日常维护">日常维护</a></li>
+		        
+					<li><a href="/categories/点点滴滴">点点滴滴</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/InnerAc" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-14" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/25/14/" class="article-date">
+  	<time datetime="2015-08-25T00:34:52.000Z" itemprop="datePublished">2015-08-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初学python（二）数据类型
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/编程与算法/">编程与算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>据说python里有6个标准的数据类型：</p>
+<ul>
+<li>Numbers（数字）</li>
+<li>String（字符串）</li>
+<li>List（列表） </li>
+<li>Tuple（元组） </li>
+<li>Sets（集合）</li>
+<li>Dictionaries（字典）</li>
+</ul>
+<a id="more"></a>
+<h2 id="Numbers（数字）">Numbers（数字）</h2><p>python3 支持int、float、bool、complex<br>还可以通过一个叫<code>type()</code>的函数来输出类型，自己测试了一下</p>
+<pre><code>Python <span class="number">3.4</span>.<span class="number">0</span> (default, Apr <span class="number">11</span> <span class="number">2014</span>, <span class="number">13</span>:<span class="number">05</span>:<span class="number">18</span>) 
+[GCC <span class="number">4.8</span>.<span class="number">2</span>] on linux
+Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.
+&gt;&gt;&gt; <span class="tag">a</span>,<span class="tag">b</span>,c,d = <span class="number">10</span>,<span class="number">2.5</span>,True,<span class="number">4</span>+<span class="number">3</span>j
+&gt;&gt;&gt; <span class="function"><span class="title">print</span><span class="params">(type(a)</span></span>,<span class="function"><span class="title">type</span><span class="params">(b)</span></span>,<span class="function"><span class="title">type</span><span class="params">(c)</span></span>,<span class="function"><span class="title">type</span><span class="params">(d)</span></span>)
+&lt;class <span class="string">'int'</span>&gt; &lt;class <span class="string">'float'</span>&gt; &lt;class <span class="string">'bool'</span>&gt; &lt;class <span class="string">'complex'</span>&gt;
+&gt;&gt;&gt; 
+</code></pre><p>还有运算：</p>
+<pre><code>&gt;&gt;&gt; <span class="number">1</span> + <span class="number">1</span> <span class="preprocessor">#加</span>
+<span class="number">2</span>
+&gt;&gt;&gt; <span class="number">1</span> - <span class="number">1</span> <span class="preprocessor">#减</span>
+<span class="number">0</span>
+&gt;&gt;&gt; <span class="number">1</span> × <span class="number">1</span> <span class="preprocessor">#乘</span>
+  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>
+    <span class="number">1</span> × <span class="number">1</span> <span class="preprocessor">#乘</span>
+      ^
+SyntaxError: invalid character in identifier
+&gt;&gt;&gt; <span class="number">1</span> * <span class="number">1</span> <span class="preprocessor">#乘</span>
+<span class="number">1</span>
+&gt;&gt;&gt; <span class="number">3</span> / <span class="number">2</span> <span class="preprocessor">#浮点数除</span>
+<span class="number">1.5</span>
+&gt;&gt;&gt; <span class="number">3</span> <span class="comment">// 2 #整除</span>
+<span class="number">1</span>
+&gt;&gt;&gt; <span class="number">3</span> % <span class="number">2</span> <span class="preprocessor">#取模</span>
+<span class="number">1</span>
+&gt;&gt;&gt; <span class="number">2</span> ** <span class="number">4</span> <span class="preprocessor">#幂</span>
+<span class="number">16</span>
+&gt;&gt;&gt; <span class="built_in">pow</span>(<span class="number">2</span>,<span class="number">4</span>) <span class="preprocessor">#幂</span>
+<span class="number">16</span>
+</code></pre><h2 id="String（字符串）">String（字符串）</h2><p>这个没什么好说的，上一节感觉熟练了一下。<br>可以用<code>*</code>来重复字符串，用<code>+</code>来拼接字符串，用<code>string[index]</code>来取字符，或者用<code>string[-index]</code>来倒着取字符。和ruby一样一样的。<br>还有字符串分割<code>string[index_x:index_y]</code><br>但是不能通<code>过string[index] = x</code>进行赋值，因为字符串是不可改变的。</p>
+<h2 id="List（列表）">List（列表）</h2><p>先说列表的赋值吧，一个列表中可以扔进任何一个类型的数据，不用在意类型。例如</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">a</span> = [<span class="string">'him'</span>, <span class="number">25</span>, <span class="number">100</span>, <span class="string">'her'</span>]
+&gt;&gt;&gt; <span class="function"><span class="title">print</span><span class="params">(a)</span></span>
+[<span class="string">'him'</span>, <span class="number">25</span>, <span class="number">100</span>, <span class="string">'her'</span>]
+</code></pre><p>它还支持拼接、修改、分割操作，</p>
+<pre><code>&gt;&gt;&gt; a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+&gt;&gt;&gt; a + [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]
+[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]
+&gt;&gt;&gt; a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
+&gt;&gt;&gt; a[<span class="number">0</span>] = <span class="number">9</span>
+&gt;&gt;&gt; a[<span class="number">2</span>:<span class="number">5</span>] = [<span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>]
+&gt;&gt;&gt; a
+[<span class="number">9</span>, <span class="number">2</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">6</span>]
+&gt;&gt;&gt; a[<span class="number">2</span>:<span class="number">5</span>] = []   <span class="preprocessor"># 删除</span>
+&gt;&gt;&gt; a
+[<span class="number">9</span>, <span class="number">2</span>, <span class="number">6</span>]
+</code></pre><h2 id="（元组）">（元组）</h2><p>元组（tuple）与列表类似，不同之处在于元组的元素不能修改。元组写在小括号里，元素之间用逗号隔开。<br>例如：</p>
+<pre><code>&gt;&gt;&gt; a = <span class="list">(<span class="number">1991</span>, <span class="number">2014</span>, <span class="quoted">'physics</span>', <span class="quoted">'math</span>')</span>
+&gt;&gt;&gt; print<span class="list">(<span class="keyword">a</span>, type<span class="list">(<span class="keyword">a</span>)</span>, len<span class="list">(<span class="keyword">a</span>)</span>)</span>
+<span class="list">(<span class="number">1991</span>, <span class="number">2014</span>, <span class="quoted">'physics</span>', <span class="quoted">'math</span>')</span> &lt;class <span class="quoted">'tuple</span><span class="quoted">'&gt;</span> <span class="number">4</span>
+</code></pre><p>元组与字符串类似，可以被索引且下标索引从0开始，也可以进行截取/切片（看上面，这里不再赘述）。<br>其实，可以把字符串看作一种特殊的元组。</p>
+<pre><code>&gt;&gt;&gt; tup = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)
+&gt;&gt;&gt; print(tup[<span class="number">0</span>], tup[<span class="number">1</span>:<span class="number">5</span>])
+<span class="number">1</span> (<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)
+&gt;&gt;&gt; tup[<span class="number">0</span>] = <span class="number">11</span>  <span class="preprocessor"># 修改元组元素的操作是非法的</span>
+</code></pre><p>虽然tuple的元素不可改变，但它可以包含可变的对象，比如list列表。<br>构造包含0个或1个元素的tuple是个特殊的问题，所以有一些额外的语法规则：</p>
+<pre><code>tup1 = () <span class="preprocessor"># 空元组</span>
+tup2 = (<span class="number">20</span>,) <span class="preprocessor"># 一个元素，需要在元素后添加逗号</span>
+</code></pre><p>另外，元组也支持用+操作符：</p>
+<pre><code>&gt;&gt;&gt; tup1, tup2 = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)
+&gt;&gt;&gt; print(tup1+tup2)
+(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)
+</code></pre><h2 id="Sets（集合）">Sets（集合）</h2><p>集合（set）是一个无序不重复元素的集。<br>好熟悉的结构，哈哈哈。<br>基本功能是进行成员关系测试和消除重复元素。<br>可以使用大括号 或者 set()函数创建set集合，注意：创建一个空集合必须用 set() 而不是 { }，因为{ }是用来创建一个空字典。<br>下面来个例子吧：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; set_text = {<span class="string">'item0'</span>,<span class="string">'item1'</span>,<span class="string">'item2'</span>,<span class="string">'item3'</span>,<span class="string">'item4'</span>,<span class="string">'item5'</span>,<span class="string">'item6'</span>}
+<span class="prompt">&gt;&gt;</span>&gt; print(set_text)
+{<span class="string">'item1'</span>, <span class="string">'item4'</span>, <span class="string">'item3'</span>, <span class="string">'item2'</span>, <span class="string">'item6'</span>, <span class="string">'item5'</span>, <span class="string">'item0'</span>}
+<span class="prompt">&gt;&gt;</span>&gt; <span class="comment">#果然是无序的</span>
+... 
+<span class="prompt">&gt;&gt;</span>&gt; <span class="string">'item3'</span> in set_text <span class="comment">#成员测试?</span>
+<span class="constant">True</span>
+<span class="prompt">&gt;&gt;</span>&gt; <span class="string">'item7'</span> in set_text <span class="comment">#成员测试?</span>
+<span class="constant">False</span>
+<span class="prompt">&gt;&gt;</span>&gt; <span class="comment">#据说还可以进行集合运算</span>
+... 
+<span class="prompt">&gt;&gt;</span>&gt; a = set(sadfdsafsdfas)
+<span class="constant">Traceback</span> (most recent call last)<span class="symbol">:</span>
+  <span class="constant">File</span> <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span>
+<span class="constant">NameError</span><span class="symbol">:</span> name <span class="string">'sadfdsafsdfas'</span> is <span class="keyword">not</span> <span class="keyword">defined</span>
+<span class="prompt">&gt;&gt;</span>&gt; a = set(<span class="string">'sadfdsafsdfas'</span>)
+<span class="prompt">&gt;&gt;</span>&gt; b = set(<span class="string">'sdlifjxz'</span>)
+<span class="prompt">&gt;&gt;</span>&gt; a
+{<span class="string">'d'</span>, <span class="string">'a'</span>, <span class="string">'f'</span>, <span class="string">'s'</span>}
+<span class="prompt">&gt;&gt;</span>&gt; b
+{<span class="string">'z'</span>, <span class="string">'d'</span>, <span class="string">'l'</span>, <span class="string">'f'</span>, <span class="string">'x'</span>, <span class="string">'j'</span>, <span class="string">'s'</span>, <span class="string">'i'</span>}
+<span class="prompt">&gt;&gt;</span>&gt; b-a    <span class="comment">#差</span>
+{<span class="string">'x'</span>, <span class="string">'l'</span>, <span class="string">'j'</span>, <span class="string">'i'</span>, <span class="string">'z'</span>}
+<span class="prompt">&gt;&gt;</span>&gt; a | b    <span class="comment">#并</span>
+{<span class="string">'z'</span>, <span class="string">'d'</span>, <span class="string">'f'</span>, <span class="string">'l'</span>, <span class="string">'x'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'s'</span>, <span class="string">'i'</span>}
+<span class="prompt">&gt;&gt;</span>&gt; a &amp; b    <span class="comment">#交</span>
+{<span class="string">'d'</span>, <span class="string">'f'</span>, <span class="string">'s'</span>}
+<span class="prompt">&gt;&gt;</span>&gt; a ^ b    <span class="comment">#a和b中不同时存在的元素</span>
+{<span class="string">'z'</span>, <span class="string">'l'</span>, <span class="string">'x'</span>, <span class="string">'j'</span>, <span class="string">'a'</span>, <span class="string">'i'</span>}
+</code></pre><h2 id="Dictionaries（字典）">Dictionaries（字典）</h2><p>这应该就是在C里用的<code>map</code>吧，一个映射类型。其中的key必须是不可变类型，<code>list</code>和<code>tuple</code>就不行了。<br>基本操作：添删改查</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; dic = {} <span class="comment">#空字典</span>
+<span class="prompt">&gt;&gt;</span>&gt; dic
+{}
+<span class="prompt">&gt;&gt;</span>&gt; dics = {<span class="string">'tom'</span><span class="symbol">:</span><span class="number">1</span>,<span class="string">'jerry'</span><span class="symbol">:</span><span class="number">10</span>,<span class="string">'cat'</span><span class="symbol">:</span><span class="number">11</span>}
+<span class="prompt">&gt;&gt;</span>&gt; dics
+{<span class="string">'jerry'</span><span class="symbol">:</span> <span class="number">10</span>, <span class="string">'cat'</span><span class="symbol">:</span> <span class="number">11</span>, <span class="string">'tom'</span><span class="symbol">:</span> <span class="number">1</span>}
+<span class="prompt">&gt;&gt;</span>&gt; dics[<span class="string">'tom'</span>] <span class="comment">#查</span>
+<span class="number">1</span>
+<span class="prompt">&gt;&gt;</span>&gt; dics[<span class="string">'toms'</span>] <span class="comment">#查空</span>
+<span class="constant">Traceback</span> (most recent call last)<span class="symbol">:</span>
+  <span class="constant">File</span> <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span>
+<span class="constant">KeyError</span><span class="symbol">:</span> <span class="string">'toms'</span>
+<span class="prompt">&gt;&gt;</span>&gt; del dics[<span class="string">'tom'</span>] <span class="comment">#删</span>
+<span class="prompt">&gt;&gt;</span>&gt; dics
+{<span class="string">'jerry'</span><span class="symbol">:</span> <span class="number">10</span>, <span class="string">'cat'</span><span class="symbol">:</span> <span class="number">11</span>}
+<span class="prompt">&gt;&gt;</span>&gt; dics[<span class="string">'mouse'</span>] = <span class="number">100</span> <span class="comment">#添</span>
+<span class="prompt">&gt;&gt;</span>&gt; dics
+{<span class="string">'mouse'</span><span class="symbol">:</span> <span class="number">100</span>, <span class="string">'jerry'</span><span class="symbol">:</span> <span class="number">10</span>, <span class="string">'cat'</span><span class="symbol">:</span> <span class="number">11</span>}
+<span class="prompt">&gt;&gt;</span>&gt; dics[<span class="string">'mouse'</span>] = <span class="number">101</span> <span class="comment">#改</span>
+<span class="prompt">&gt;&gt;</span>&gt; dics
+{<span class="string">'mouse'</span><span class="symbol">:</span> <span class="number">101</span>, <span class="string">'jerry'</span><span class="symbol">:</span> <span class="number">10</span>, <span class="string">'cat'</span><span class="symbol">:</span> <span class="number">11</span>}
+</code></pre><p>进阶操作：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; list (dics.keys()) <span class="comment">#返回所有key组成的list</span>
+[<span class="string">'mouse'</span>, <span class="string">'jerry'</span>, <span class="string">'cat'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; list (dics.values()) <span class="comment">#返回所有value组成的list</span>
+[<span class="number">101</span>, <span class="number">10</span>, <span class="number">11</span>]
+<span class="prompt">&gt;&gt;</span>&gt; sorted (dics.keys()) <span class="comment">#按key排序</span>
+[<span class="string">'cat'</span>, <span class="string">'jerry'</span>, <span class="string">'mouse'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; <span class="string">'cat'</span> in dics <span class="comment">#成员测试?</span>
+<span class="constant">True</span>
+<span class="prompt">&gt;&gt;</span>&gt; <span class="string">'cats'</span> in dics <span class="comment">#成员测试?</span>
+<span class="constant">False</span>
+</code></pre><p>奇葩的构造方式，从sequence中构建</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; dict([(<span class="string">'sape'</span>, <span class="number">4139</span>), (<span class="string">'guido'</span>, <span class="number">4127</span>), (<span class="string">'jack'</span>, <span class="number">4098</span>)])
+{<span class="string">'jack'</span><span class="symbol">:</span> <span class="number">4098</span>, <span class="string">'sape'</span><span class="symbol">:</span> <span class="number">4139</span>, <span class="string">'guido'</span><span class="symbol">:</span> <span class="number">4127</span>}
+<span class="prompt">&gt;&gt;</span>&gt; {<span class="symbol">x:</span> x**<span class="number">2</span> for x in (<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>)}
+{<span class="number">2</span><span class="symbol">:</span> <span class="number">4</span>, <span class="number">4</span><span class="symbol">:</span> <span class="number">16</span>, <span class="number">6</span><span class="symbol">:</span> <span class="number">36</span>}
+<span class="prompt">&gt;&gt;</span>&gt; dict(sape=<span class="number">4139</span>, guido=<span class="number">4127</span>, jack=<span class="number">4098</span>)
+{<span class="string">'jack'</span><span class="symbol">:</span> <span class="number">4098</span>, <span class="string">'sape'</span><span class="symbol">:</span> <span class="number">4139</span>, <span class="string">'guido'</span><span class="symbol">:</span> <span class="number">4127</span>}
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/25/15/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          初学python（三）一些练习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/25/13/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Qt中实现将float类型转换为QString类型</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="14" data-title="初学python（二）数据类型" data-url="http://innerac.github.io/2015/08/25/14/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"innerac"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 InnerAc
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  blog by <a href="https://github.com/innerac" target="_blank">InnerAc</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

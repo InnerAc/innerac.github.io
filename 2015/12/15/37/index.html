@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spark1.3.1分布式配置 | InnerAc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1 download spark-bin在apache官网下载spark1.3.1-bin-hadoop-2.6.tgz地址如下:
+“http://spark.apache.org/downloads.html“
+2 配置spark集群承接上一篇文章，我们将spark文件放在/usr/local/bigdata/spark下。并且在.bashrc中配置spark的环境变量。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spark1.3.1分布式配置">
+<meta property="og:url" content="http://innerac.github.io/2015/12/15/37/index.html">
+<meta property="og:site_name" content="InnerAc">
+<meta property="og:description" content="1 download spark-bin在apache官网下载spark1.3.1-bin-hadoop-2.6.tgz地址如下:
+“http://spark.apache.org/downloads.html“
+2 配置spark集群承接上一篇文章，我们将spark文件放在/usr/local/bigdata/spark下。并且在.bashrc中配置spark的环境变量。">
+<meta property="og:updated_time" content="2016-01-08T08:09:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spark1.3.1分布式配置">
+<meta name="twitter:description" content="1 download spark-bin在apache官网下载spark1.3.1-bin-hadoop-2.6.tgz地址如下:
+“http://spark.apache.org/downloads.html“
+2 配置spark集群承接上一篇文章，我们将spark文件放在/usr/local/bigdata/spark下。并且在.bashrc中配置spark的环境变量。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/ava.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">InnerAc</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Don&#39;t fire the unknow</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/编程与算法">编程与算法</a></li>
+				        
+							<li><a href="/categories/日常维护">日常维护</a></li>
+				        
+							<li><a href="/categories/点点滴滴">点点滴滴</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/InnerAc" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/64位/" style="font-size: 10px;">64位</a> <a href="/tags/ACM/" style="font-size: 16.67px;">ACM</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/QT/" style="font-size: 10px;">QT</a> <a href="/tags/VS/" style="font-size: 10px;">VS</a> <a href="/tags/aboutme/" style="font-size: 10px;">aboutme</a> <a href="/tags/acm/" style="font-size: 11.67px;">acm</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a> <a href="/tags/bellman-ford/" style="font-size: 10px;">bellman-ford</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cf/" style="font-size: 10px;">cf</a> <a href="/tags/codeforces/" style="font-size: 10px;">codeforces</a> <a href="/tags/dijkstra/" style="font-size: 10px;">dijkstra</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/dr-com/" style="font-size: 10px;">dr.com</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/floyd/" style="font-size: 10px;">floyd</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hadoop/" style="font-size: 11.67px;">hadoop</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/hihocoder/" style="font-size: 10px;">hihocoder</a> <a href="/tags/innerac/" style="font-size: 10px;">innerac</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/osgi/" style="font-size: 10px;">osgi</a> <a href="/tags/poj/" style="font-size: 11.67px;">poj</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/spark/" style="font-size: 13.33px;">spark</a> <a href="/tags/spfa/" style="font-size: 10px;">spfa</a> <a href="/tags/ss/" style="font-size: 13.33px;">ss</a> <a href="/tags/tachyon/" style="font-size: 13.33px;">tachyon</a> <a href="/tags/trie/" style="font-size: 11.67px;">trie</a> <a href="/tags/ubuntu/" style="font-size: 18.33px;">ubuntu</a> <a href="/tags/uniun/" style="font-size: 10px;">uniun</a> <a href="/tags/uwsgi/" style="font-size: 10px;">uwsgi</a> <a href="/tags/virtualbox/" style="font-size: 10px;">virtualbox</a> <a href="/tags/vpn/" style="font-size: 10px;">vpn</a> <a href="/tags/区域赛/" style="font-size: 10px;">区域赛</a> <a href="/tags/图论/" style="font-size: 15px;">图论</a> <a href="/tags/大数据/" style="font-size: 15px;">大数据</a> <a href="/tags/最短路/" style="font-size: 15px;">最短路</a> <a href="/tags/经纬度/" style="font-size: 10px;">经纬度</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/课后练习/" style="font-size: 10px;">课后练习</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://jetmuffin.github.io">JetMuffin的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sunzequn.com/">Sloriac的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.qilinlirui.com/">祁林的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mapengju.com">马鹏举的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zcatao.github.io">杨松涛的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blkstone.github.io/">达哥的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://legend4917.github.io">雪林哥的博客</a>
+			          
+			          
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">本人男，目前学生党。常年ACM打铁铸铜，正在成长中。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">InnerAc</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/ava.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">InnerAc</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Don&#39;t fire the unknow</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/编程与算法">编程与算法</a></li>
+		        
+					<li><a href="/categories/日常维护">日常维护</a></li>
+		        
+					<li><a href="/categories/点点滴滴">点点滴滴</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/InnerAc" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-37" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/15/37/" class="article-date">
+  	<time datetime="2015-12-15T07:17:04.000Z" itemprop="datePublished">2015-12-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      spark1.3.1分布式配置
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/编程与算法/">编程与算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1_download_spark-bin">1 download spark-bin</h2><p>在<code>apache</code>官网下载<code>spark1.3.1-bin-hadoop-2.6.tgz</code>地址如下:</p>
+<p>“<a href="http://spark.apache.org/downloads.html" target="_blank" rel="external">http://spark.apache.org/downloads.html</a>“</p>
+<h2 id="2_配置spark集群">2 配置spark集群</h2><p>承接上一篇文章，我们将<code>spark</code>文件放在<code>/usr/local/bigdata/spark</code>下。<br>并且在<code>.bashrc</code>中配置<code>spark</code>的环境变量。</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#spark</span></span><br><span class="line"><span class="built_in">export</span> SPARK_HOME=/usr/<span class="built_in">local</span>/bigdata/spark</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$SPARK_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<p>然后安装<code>scala</code>，因为<code>spark</code>使用<code>scala</code>写的所以最好还是安装一下。</p>
+<p>下载地址:”<a href="http://www.scala-lang.org/download/2.11.7.html" target="_blank" rel="external">http://www.scala-lang.org/download/2.11.7.html</a>“</p>
+<p>安装完成后得到<code>scala</code>的安装路径。我是在<code>ubuntu</code>下安装的<code>deb</code>，路径应该是<code>/usr/share/scala</code>这个地方。</p>
+<p>然后在<code>spark</code>配置文件<code>conf/</code>下操作：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp spark-env.sh.template spark-env.sh</span><br><span class="line">vim spark-env.sh</span><br></pre></td></tr></table></figure></p>
+<p>在里面添加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/java-7-oracle&#10;export SCALA_HOME=/usr/share/scala&#10;export SPARK_MASTER_IP=master&#10;export SPARK_WORKER_MEMORY=1g&#10;export HADOOP_CONF_DIR=/usr/local/bigdata/hadoop/etc/hadoop&#10;export HADOOP_OPTS=&#34;-Djava.library.path=$HADOOP_HOME/lib:$HADOOP_HOME/lib/native&#34;</span><br></pre></td></tr></table></figure></p>
+<p>然后创建<code>slave</code>文件:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp slaves.template slaves</span><br><span class="line">vim slaves</span><br></pre></td></tr></table></figure></p>
+<p>去掉里面的<code>localhost</code>，加上自己的<code>slave</code>节点ip.<code>slave</code>.我这里的<code>slave</code>是在<code>hosts</code>里面改过的，所以可以直接写别名的。</p>
+<p>然后将<code>spark</code>文件分发到其他节点，同时其他节点也要配置好环境，和<code>scala</code></p>
+<p>然后启动<code>spart</code><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SPARK_HOME/sbin/start-all.sh</span><br></pre></td></tr></table></figure></p>
+<h2 id="3_测试">3 测试</h2><p>启动<code>hadoop</code>和<code>spark</code>后，在<code>master</code>节点输入<code>jps</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ [10:59:16]&#10;bd$ jps&#10;6047 Jps&#10;5013 SecondaryNameNode&#10;4803 NameNode&#10;5472 Master&#10;5157 ResourceManager&#10;5771 SparkSubmit&#10; ~ [10:59:23]</span><br></pre></td></tr></table></figure></p>
+<p><code>slave</code>节点上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> ~ [10:43:23]&#10;bd$ jps                                   &#10;5843 Jps&#10;5527 Worker&#10;5210 DataNode&#10;5339 NodeManager&#10; ~ [11:01:22]</span><br></pre></td></tr></table></figure></p>
+<p>然后启动<code>bin/spark-shell</code><br>进行测试:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scala&#62; val a = sc.parallelize(1 to 10)&#10;a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[0] at parallelize at &#60;console&#62;:21&#10;&#10;scala&#62; val b = a.map(x =&#62; x*2)&#10;b: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[1] at map at &#60;console&#62;:23&#10;&#10;scala&#62; b.collect&#10;15/12/14 22:57:02 INFO spark.SparkContext: Starting job: collect at &#60;console&#62;:26&#10;15/12/14 22:57:02 INFO scheduler.DAGScheduler: Got job 0 (collect at &#60;console&#62;:26) with 1 output partitions (allowLocal=false)&#10;15/12/14 22:57:02 INFO scheduler.DAGScheduler: Final stage: Stage 0(collect at &#60;console&#62;:26)&#10;15/12/14 22:57:02 INFO scheduler.DAGScheduler: Parents of final stage: List()&#10;15/12/14 22:57:02 INFO scheduler.DAGScheduler: Missing parents: List()&#10;15/12/14 22:57:02 INFO scheduler.DAGScheduler: Submitting Stage 0 (MapPartitionsRDD[1] at map at &#60;console&#62;:23), which has no missing parents&#10;15/12/14 22:57:05 INFO storage.MemoryStore: ensureFreeSpace(1792) called with curMem=0, maxMem=280248975&#10;15/12/14 22:57:05 INFO storage.MemoryStore: Block broadcast_0 stored as values in memory (estimated size 1792.0 B, free 267.3 MB)&#10;15/12/14 22:57:05 INFO storage.MemoryStore: ensureFreeSpace(1291) called with curMem=1792, maxMem=280248975&#10;15/12/14 22:57:05 INFO storage.MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 1291.0 B, free 267.3 MB)&#10;15/12/14 22:57:05 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:60692 (size: 1291.0 B, free: 267.3 MB)&#10;15/12/14 22:57:05 INFO storage.BlockManagerMaster: Updated info of block broadcast_0_piece0&#10;15/12/14 22:57:05 INFO spark.SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:839&#10;15/12/14 22:57:05 INFO scheduler.DAGScheduler: Submitting 1 missing tasks from Stage 0 (MapPartitionsRDD[1] at map at &#60;console&#62;:23)&#10;15/12/14 22:57:05 INFO scheduler.TaskSchedulerImpl: Adding task set 0.0 with 1 tasks&#10;15/12/14 22:57:05 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, PROCESS_LOCAL, 1317 bytes)&#10;15/12/14 22:57:05 INFO executor.Executor: Running task 0.0 in stage 0.0 (TID 0)&#10;15/12/14 22:57:06 INFO executor.Executor: Finished task 0.0 in stage 0.0 (TID 0). 643 bytes result sent to driver&#10;15/12/14 22:57:06 INFO scheduler.DAGScheduler: Stage 0 (collect at &#60;console&#62;:26) finished in 0.459 s&#10;15/12/14 22:57:06 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 364 ms on localhost (1/1)&#10;15/12/14 22:57:06 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool &#10;15/12/14 22:57:06 INFO scheduler.DAGScheduler: Job 0 finished: collect at &#60;console&#62;:26, took 3.878411 s&#10;res0: Array[Int] = Array(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)&#10;&#10;scala&#62; (1 to 10,3)&#10;res1: (scala.collection.immutable.Range.Inclusive, Int) = (Range(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),3)&#10;&#10;scala&#62; exit</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/20/38/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ubuntu64位使用32位Dr.com
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/03/36/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hadoop2.6.0分布式配置</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="37" data-title="spark1.3.1分布式配置" data-url="http://innerac.github.io/2015/12/15/37/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"innerac"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 InnerAc
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  blog by <a href="https://github.com/innerac" target="_blank">InnerAc</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

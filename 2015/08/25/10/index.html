@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Trie树 hihoCoder | InnerAc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="时间限制:10000ms单点时限:1000ms内存限制:256MB描述小Hi和小Ho是一对好朋友，出生在信息化社会的他们对编程产生了莫大的兴趣，他们约定好互相帮助，在编程的学习道路上一同前进。
+这一天，他们遇到了一本词典，于是小Hi就向小Ho提出了那个经典的问题：“小Ho，你能不能对于每一个我给出的字符串，都在这个词典里面找到以这个字符串开头的所有单词呢？”
+身经百战的小Ho答道：“怎么会不能呢！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trie树 hihoCoder">
+<meta property="og:url" content="http://innerac.github.io/2015/08/25/10/index.html">
+<meta property="og:site_name" content="InnerAc">
+<meta property="og:description" content="时间限制:10000ms单点时限:1000ms内存限制:256MB描述小Hi和小Ho是一对好朋友，出生在信息化社会的他们对编程产生了莫大的兴趣，他们约定好互相帮助，在编程的学习道路上一同前进。
+这一天，他们遇到了一本词典，于是小Hi就向小Ho提出了那个经典的问题：“小Ho，你能不能对于每一个我给出的字符串，都在这个词典里面找到以这个字符串开头的所有单词呢？”
+身经百战的小Ho答道：“怎么会不能呢！">
+<meta property="og:updated_time" content="2016-01-08T08:09:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Trie树 hihoCoder">
+<meta name="twitter:description" content="时间限制:10000ms单点时限:1000ms内存限制:256MB描述小Hi和小Ho是一对好朋友，出生在信息化社会的他们对编程产生了莫大的兴趣，他们约定好互相帮助，在编程的学习道路上一同前进。
+这一天，他们遇到了一本词典，于是小Hi就向小Ho提出了那个经典的问题：“小Ho，你能不能对于每一个我给出的字符串，都在这个词典里面找到以这个字符串开头的所有单词呢？”
+身经百战的小Ho答道：“怎么会不能呢！">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/ava.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">InnerAc</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Don&#39;t fire the unknow</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/编程与算法">编程与算法</a></li>
+				        
+							<li><a href="/categories/日常维护">日常维护</a></li>
+				        
+							<li><a href="/categories/点点滴滴">点点滴滴</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/InnerAc" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/64位/" style="font-size: 10px;">64位</a> <a href="/tags/ACM/" style="font-size: 16.67px;">ACM</a> <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/QT/" style="font-size: 10px;">QT</a> <a href="/tags/VS/" style="font-size: 10px;">VS</a> <a href="/tags/aboutme/" style="font-size: 10px;">aboutme</a> <a href="/tags/acm/" style="font-size: 11.67px;">acm</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a> <a href="/tags/bellman-ford/" style="font-size: 10px;">bellman-ford</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/cf/" style="font-size: 10px;">cf</a> <a href="/tags/codeforces/" style="font-size: 10px;">codeforces</a> <a href="/tags/dijkstra/" style="font-size: 10px;">dijkstra</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/dr-com/" style="font-size: 10px;">dr.com</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/floyd/" style="font-size: 10px;">floyd</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hadoop/" style="font-size: 11.67px;">hadoop</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/hihocoder/" style="font-size: 10px;">hihocoder</a> <a href="/tags/innerac/" style="font-size: 10px;">innerac</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/osgi/" style="font-size: 10px;">osgi</a> <a href="/tags/poj/" style="font-size: 11.67px;">poj</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/spark/" style="font-size: 13.33px;">spark</a> <a href="/tags/spfa/" style="font-size: 10px;">spfa</a> <a href="/tags/ss/" style="font-size: 13.33px;">ss</a> <a href="/tags/tachyon/" style="font-size: 13.33px;">tachyon</a> <a href="/tags/trie/" style="font-size: 11.67px;">trie</a> <a href="/tags/ubuntu/" style="font-size: 18.33px;">ubuntu</a> <a href="/tags/uniun/" style="font-size: 10px;">uniun</a> <a href="/tags/uwsgi/" style="font-size: 10px;">uwsgi</a> <a href="/tags/virtualbox/" style="font-size: 10px;">virtualbox</a> <a href="/tags/vpn/" style="font-size: 10px;">vpn</a> <a href="/tags/区域赛/" style="font-size: 10px;">区域赛</a> <a href="/tags/图论/" style="font-size: 15px;">图论</a> <a href="/tags/大数据/" style="font-size: 15px;">大数据</a> <a href="/tags/最短路/" style="font-size: 15px;">最短路</a> <a href="/tags/经纬度/" style="font-size: 10px;">经纬度</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/课后练习/" style="font-size: 10px;">课后练习</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://jetmuffin.github.io">JetMuffin的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://sunzequn.com/">Sloriac的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.qilinlirui.com/">祁林的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mapengju.com">马鹏举的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://zcatao.github.io">杨松涛的博客</a>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blkstone.github.io/">达哥的博客</a>
+			          
+			          	<br>
+			          
+			          
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://legend4917.github.io">雪林哥的博客</a>
+			          
+			          
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">本人男，目前学生党。常年ACM打铁铸铜，正在成长中。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">InnerAc</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/ava.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">InnerAc</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Don&#39;t fire the unknow</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/编程与算法">编程与算法</a></li>
+		        
+					<li><a href="/categories/日常维护">日常维护</a></li>
+		        
+					<li><a href="/categories/点点滴滴">点点滴滴</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/InnerAc" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-10" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/25/10/" class="article-date">
+  	<time datetime="2015-08-25T00:28:52.000Z" itemprop="datePublished">2015-08-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Trie树 hihoCoder
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/acm/">acm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hihocoder/">hihocoder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/trie/">trie</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/编程与算法/">编程与算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>时间限制:10000ms<br>单点时限:1000ms<br>内存限制:256MB<br>描述<br>小Hi和小Ho是一对好朋友，出生在信息化社会的他们对编程产生了莫大的兴趣，他们约定好互相帮助，在编程的学习道路上一同前进。</p>
+<p>这一天，他们遇到了一本词典，于是小Hi就向小Ho提出了那个经典的问题：“小Ho，你能不能对于每一个我给出的字符串，都在这个词典里面找到以这个字符串开头的所有单词呢？”</p>
+<p>身经百战的小Ho答道：“怎么会不能呢！你每给我一个字符串，我就依次遍历词典里的所有单词，检查你给我的字符串是不是这个单词的前缀不就是了？”</p>
+<p>小Hi笑道：“你啊，还是太年轻了！~假设这本词典里有10万个单词，我询问你一万次，你得要算到哪年哪月去？”</p>
+<p>小Ho低头算了一算，看着那一堆堆的0，顿时感觉自己这辈子都要花在上面了…</p>
+<p>小Hi看着小Ho的囧样，也是继续笑道：“让我来提高一下你的知识水平吧~你知道树这样一种数据结构么？”</p>
+<p>小Ho想了想，说道：“知道~它是一种基础的数据结构，就像这里说的一样！”</p>
+<p>小Hi满意的点了点头，说道：“那你知道我怎么样用一棵树来表示整个词典么？”</p>
+<p>小Ho摇摇头表示自己不清楚。</p>
+<p>“你看，我们现在得到了这样一棵树，那么你看，如果我给你一个字符串ap，你要怎么找到所有以ap开头的单词呢？”小Hi又开始考校小Ho。</p>
+<p>“唔…一个个遍历所有的单词？”小Ho还是不忘自己最开始提出来的算法。</p>
+<p>“笨！这棵树难道就白构建了！”小Hi教训完小Ho，继续道：“看好了！”</p>
+<p>“那么现在！赶紧去用代码实现吧！”小Hi如是说道</p>
+<a id="more"></a>
+<p>输入<br>输入的第一行为一个正整数n，表示词典的大小，其后n行，每一行一个单词（不保证是英文单词，也有可能是火星文单词哦），单词由不超过10个的小写英文字母组成，可能存在相同的单词，此时应将其视作不同的单词。接下来的一行为一个正整数m，表示小Hi询问的次数，其后m行，每一行一个字符串，该字符串由不超过10个的小写英文字母组成，表示小Hi的一个询问。</p>
+<p>在20%的数据中n, m&lt;=10，词典的字母表大小&lt;=2.</p>
+<p>在60%的数据中n, m&lt;=1000，词典的字母表大小&lt;=5.</p>
+<p>在100%的数据中n, m&lt;=100000，词典的字母表大小&lt;=26.</p>
+<p>输出<br>对于小Hi的每一个询问，输出一个整数Ans,表示词典中以小Hi给出的字符串为前缀的单词的个数。</p>
+<p>样例输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5&#10;babaab&#10;babbbaaaa&#10;abba&#10;aaaaabaa&#10;babaababb&#10;5&#10;babb&#10;baabaaa&#10;bab&#10;bb&#10;bbabbaab</span><br></pre></td></tr></table></figure></p>
+<p>样例输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#10;0&#10;3&#10;0&#10;0</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>建立一个自定义结构体<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Tree;  </span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> Tree *PTree;   </span><br><span class="line"><span class="keyword">struct</span> Tree&#123;  </span><br><span class="line">        <span class="keyword">char</span> let;   <span class="comment">//该结构体代表低字母  </span></span><br><span class="line">        <span class="keyword">int</span> count;<span class="comment">//经过该结点的单词数  </span></span><br><span class="line">        PTree next[MAX];<span class="comment">//指向子结构  </span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>let貌似没有用上 不过没有关系<br>执行find函数后 查找到最后一个字母然后返回该结点低count即为结果<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>  </span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span>  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">26</span>;  </span><br><span class="line"><span class="keyword">struct</span> Tree;  </span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> Tree *PTree;   </span><br><span class="line"><span class="keyword">struct</span> Tree&#123;  </span><br><span class="line">        <span class="keyword">char</span> let;  </span><br><span class="line">        <span class="keyword">int</span> count;  </span><br><span class="line">        PTree next[MAX];  </span><br><span class="line">&#125;;  </span><br><span class="line">PTree root[MAX];  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;MAX;i++)&#123;  </span><br><span class="line">            root[i] = <span class="keyword">new</span> Tree();  </span><br><span class="line">            root[i]-&gt;let = i+<span class="string">'a'</span>;  </span><br><span class="line">            root[i]-&gt;count = <span class="number">0</span>;  </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;MAX;j++)&#123;  </span><br><span class="line">                    root[i]-&gt;next[j] = <span class="literal">NULL</span>;  </span><br><span class="line">            &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    &#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">linkTree</span><span class="params">(PTree par,<span class="keyword">char</span> let )</span></span>&#123;  </span><br><span class="line">        PTree t = <span class="keyword">new</span> Tree();  </span><br><span class="line">        <span class="keyword">int</span> n = let-<span class="string">'a'</span>;  </span><br><span class="line">        t-&gt;let = let;  </span><br><span class="line">        t-&gt;count = <span class="number">0</span>;  </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;MAX;i++)&#123;  </span><br><span class="line">                t-&gt;next[i] = <span class="literal">NULL</span>;  </span><br><span class="line">        &#125;  </span><br><span class="line">        par-&gt;next[n] = t;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">buildTree</span><span class="params">(<span class="built_in">string</span> str)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> n = str.length();  </span><br><span class="line">        <span class="keyword">int</span> st = str[<span class="number">0</span>]-<span class="string">'a'</span>;  </span><br><span class="line">        PTree p = root[st];  </span><br><span class="line">        p-&gt;count++;  </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;  </span><br><span class="line">                <span class="keyword">int</span> num = str[i] - <span class="string">'a'</span>;  </span><br><span class="line">                <span class="keyword">if</span>(p-&gt;next[num] == <span class="literal">NULL</span>)&#123;  </span><br><span class="line">                        linkTree(p,str[i]);  </span><br><span class="line">                &#125;  </span><br><span class="line">                p = p-&gt;next[num];  </span><br><span class="line">                p-&gt;count++;  </span><br><span class="line">        &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="built_in">string</span> str)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> n = str.length();  </span><br><span class="line">        <span class="keyword">int</span> st = str[<span class="number">0</span>]-<span class="string">'a'</span>;  </span><br><span class="line">        <span class="keyword">if</span>(root[st] == <span class="literal">NULL</span>)<span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">        PTree p = root[st];  </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;  </span><br><span class="line">                <span class="keyword">int</span> x = str[i]-<span class="string">'a'</span>;  </span><br><span class="line">                <span class="keyword">if</span>(p-&gt;next[x]!=<span class="literal">NULL</span>)&#123;  </span><br><span class="line">                        p = p-&gt;next[x];  </span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">                        <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">                &#125;  </span><br><span class="line">              </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> p-&gt;count;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> i,n;  </span><br><span class="line">        <span class="built_in">string</span> s;  </span><br><span class="line">        init();  </span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n;  </span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;  </span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;s;  </span><br><span class="line">            buildTree(s);  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n;  </span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;  </span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;s;  </span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;find(s)&lt;&lt;endl;  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/25/11/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          codeforces content#260 D A Lot of Games
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/25/9/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">并查集 poj食物链</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="10" data-title="Trie树 hihoCoder" data-url="http://innerac.github.io/2015/08/25/10/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"innerac"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 InnerAc
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  blog by <a href="https://github.com/innerac" target="_blank">InnerAc</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
