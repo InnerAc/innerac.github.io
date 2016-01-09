@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: acm | InnerAc</title>
+  <title>linux下面密码执行sudo命令 | InnerAc</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="anjicun | innerac | blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="InnerAc">
-<meta property="og:url" content="http://innerac.github.io/tags/acm/index.html">
+  <meta name="description" content="在做分布式时，使用ssh控制集群节点，如果需要关机重启或者批量处理等行为时需要依次登陆进去然后执行命令，有时还要输入密码。集群少的时候还好，等节点多了的话几乎就是场灾难啊。身为程序员怎么可能使自己做这种重复性的工作呢，所以需要一个脚本来一键执行。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux下面密码执行sudo命令">
+<meta property="og:url" content="http://innerac.github.io/2016/01/09/43/index.html">
 <meta property="og:site_name" content="InnerAc">
-<meta property="og:description" content="anjicun | innerac | blog">
+<meta property="og:description" content="在做分布式时，使用ssh控制集群节点，如果需要关机重启或者批量处理等行为时需要依次登陆进去然后执行命令，有时还要输入密码。集群少的时候还好，等节点多了的话几乎就是场灾难啊。身为程序员怎么可能使自己做这种重复性的工作呢，所以需要一个脚本来一键执行。">
+<meta property="og:updated_time" content="2016-01-09T03:54:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="InnerAc">
-<meta name="twitter:description" content="anjicun | innerac | blog">
+<meta name="twitter:title" content="linux下面密码执行sudo命令">
+<meta name="twitter:description" content="在做分布式时，使用ssh控制集群节点，如果需要关机重启或者批量处理等行为时需要依次登陆进去然后执行命令，有时还要输入密码。集群少的时候还好，等节点多了的话几乎就是场灾难啊。身为程序员怎么可能使自己做这种重复性的工作呢，所以需要一个脚本来一键执行。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -215,92 +216,114 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-43" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/08/25/10/" class="archive-article-date">
-  	<time datetime="2015-08-25T00:28:52.000Z" itemprop="datePublished">Aug 25</time>
+    <div class="article-meta">
+      <a href="/2016/01/09/43/" class="article-date">
+  	<time datetime="2016-01-09T03:41:26.000Z" itemprop="datePublished">2016-01-09</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/08/25/10/">Trie树 hihoCoder</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux下面密码执行sudo命令
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/acm/">acm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hihocoder/">hihocoder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/trie/">trie</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
 	</div>
 
-          
+        
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/编程与算法/">编程与算法</a>
+	<a class="article-category-link" href="/categories/日常维护/">日常维护</a>
 	</div>
 
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在做分布式时，使用<code>ssh</code>控制集群节点，如果需要关机重启或者批量处理等行为时需要依次登陆进去然后执行命令，有时还要输入密码。集群少的时候还好，等节点多了的话几乎就是场灾难啊。身为程序员怎么可能使自己做这种重复性的工作呢，所以需要一个脚本来一键执行。<br><a id="more"></a></p>
+<h3 id="ssh执行远程命令">ssh执行远程命令</h3><p>首先说明通过<code>ssh</code>来执行远程命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh $remote_username@$remote_ip exec &#34;$commend&#34;</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>$remote_username</code>为远程用户，<code>$remote_ip</code>为远程主机ip地址，<code>$commend</code>需要在远程主机上执行的命令。</p>
+<p>如果时多条<code>commend</code>需要用<code>;</code>隔开。</p>
+<h3 id="免密码执行sudo命令">免密码执行sudo命令</h3><p>接下来说明如何面密码执行<code>sudo</code>命令。其实并不是免密码，而且很不安全，但是在自己内部的集群上是不需要考虑这些了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#34;$pwd&#34; | sudo -S $commend</span><br></pre></td></tr></table></figure></p>
+<p>里面的<code>$pwd</code>为密码，<code>$commend</code>为需要<code>sudo</code>权限执行的命令。其实就是通过管道<code>|</code>将密码定向输入进去。</p>
+<h3 id="结合">结合</h3><p>所以结合起来就是下面的样子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh $remote_username@$remote_ip exec &#34;echo \&#34;$pwd\&#34; | sudo -S $commend&#34;</span><br></pre></td></tr></table></figure></p>
+<p>举个例子，这是我通过<code>ssh</code>关闭8个<code>slave</code>节点的脚本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash&#10;i=1&#10;while(( $i&#60;=8 ))&#10;do&#10;&#9;target=&#34;slave$i&#34;&#10;&#9;printf &#34;Will to shutdown the\e[31m $&#123;target&#125;\e[0m !!\n&#34;&#10;&#9;ssh $target exec &#34;echo \&#34;hadoop\&#34; | sudo -S halt&#34;&#10;&#9;let &#34;i++&#34;&#10;done</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/01/42/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在java程序中将spark的RDD缓存到tachyon中</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/08/25/7/" class="archive-article-date">
-  	<time datetime="2015-08-25T00:18:00.000Z" itemprop="datePublished">Aug 25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/08/25/7/">Cash Machine poj1276</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/acm/">acm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/poj/">poj</a></li></ul>
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/编程与算法/">编程与算法</a>
-	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="43" data-title="linux下面密码执行sudo命令" data-url="http://innerac.github.io/2016/01/09/43/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"innerac"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -328,9 +351,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
